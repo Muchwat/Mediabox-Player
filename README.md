@@ -1,4 +1,4 @@
-# clipplayer
+# Mediabox Player
 
 > Media Player
 
