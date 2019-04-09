@@ -184,6 +184,7 @@
     font-size: 17px;
     padding-left: 2vw;
     -webkit-transition: font-size 0.8s;
+    -webkit-transition: padding-left 0.8s;
 }
 
 .max_sidebar .side-menu {

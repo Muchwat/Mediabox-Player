@@ -144,6 +144,7 @@ ul > li div:hover {
     font-size: 11px;
     padding-left: 1.3vw;
     -webkit-transition: font-size 0.8s;
+    -webkit-transition: padding-left 0.8s;
 }
 .side-bar ul > li .icon {
     font-size: 19px;
