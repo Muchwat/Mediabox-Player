@@ -37,7 +37,7 @@
       setVolume(action) {
         if (action) {
           this.vol = this.vol < 95 ? this.vol + 5 : this.vol = 100;
-        } else { 
+        } else {
           this.vol = this.vol > 5 ? this.vol - 5 : this.vol = 0;
         }
       },
@@ -46,7 +46,7 @@
         EventBus.$emit('volume', this.vol);
       },
       shuffle() {
-        EventBus.$emit('shuffle', this.state);      
+        EventBus.$emit('shuffle', this.state);
       },
       previous() {
         EventBus.$emit('prev-'+ this.control);
@@ -70,7 +70,7 @@
       setView(e) {
         this.active = e.view;
         this.sub = e.sub;
-        
+
       }
     },
     mounted() {
@@ -88,7 +88,7 @@
       //   console.log(data)
       // })
 
-      
+
       window.document.addEventListener('keydown', (event) => {
         const keyName = event.key;
         console.log(keyName);
@@ -144,9 +144,9 @@
       EventBus.$on('media', (data) => {
         this.control = data.media;
         console.log('media-'+ this.control);
-        
-        this.media = data; 
-        this.state = true; 
+
+        this.media = data;
+        this.state = true;
         if (data.media == 'radio') { this.progress = 100 }
       });
     }
@@ -154,9 +154,9 @@
 </script>
 
 <style>
- body { 
-  font-family: "Segoe UI",Arial,sans-serif; 
-  -webkit-user-select: none; 
+ body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  -webkit-user-select: none;
   -webkit-app-region: no-drag;
   overflow: hidden;
   background: #444444;
@@ -174,6 +174,78 @@
 /* Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) { }
 
+.max_sidebar .side-bar {
+    width: 20vw;
+    -webkit-transition: width 1s;
+}
+
+.max_sidebar .side-bar ul > label {
+    color: #6B6B6B;
+    font-size: 17px;
+    padding-left: 2vw;
+    -webkit-transition: font-size 0.8s;
+}
+
+.max_sidebar .side-menu {
+    color: white;
+    -webkit-app-region: no-drag;
+    font-size: 24px;
+    position: absolute;
+    top: 1vw;
+    left: 15.3vw;
+    cursor: pointer;
+    -webkit-transition: left 0.8s;
+}
+.max_sidebar .opt_label {
+    display: inline-block;
+}
+.max_sidebar .audio-box {
+    background: #444444;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80vw;
+    height: 90vh;
+    -webkit-transition: width 0.8s;
+}
+
+.max_sidebar .video-box {
+    background: #444444;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80vw;
+    height: 90vh;
+    -webkit-transition: width 0.8s;
+    padding-top: 40px;
+}
+
+.max_sidebar .radio-box {
+    background: #444444;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80vw;
+    height: 90vh;
+    -webkit-transition: width 0.8s;
+}
+.max_sidebar #settings {
+    background: #444444;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80vw;
+    height: 90vh;
+    -webkit-transition: width 0.8s;
+}
+
+.max_sidebar #video_player {
+  width: 80vw;
+  height: 96vh;
+  margin-top: -52px;
+}
+
+
 .min_sidebar .side-bar {
     width: 6vw;
     -webkit-transition: width 1s;
@@ -188,6 +260,10 @@
     left: .9vw;
     cursor: pointer;
     -webkit-transition: left 0.8s;
+}
+
+.min_sidebar .opt_label {
+    display: none;
 }
 
 .min_sidebar .audio-box {
@@ -233,6 +309,6 @@
 .min_sidebar #video_player {
   width: 94vw;
   height: 96vh;
-  margin-top: -52px; 
+  margin-top: -52px;
 }
 </style>
