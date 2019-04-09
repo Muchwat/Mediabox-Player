@@ -90,18 +90,18 @@ export default {
             streamTitle: '',
             stream: null,
             control: '',
-            media: { 
-                image: null, 
-                title: '', 
-                artist: '', 
+            media: {
+                image: null,
+                title: '',
+                artist: '',
                 media: 'radio'
             },
             stations: [{
                 name: 'Hip Hop Request',
                 genre: 'Hip-Hop and RnB',
                 url: 'http://149.56.175.167:5461/stream/;&type=mp3'
-            },{ 
-                name: 'Deluxe FM', 
+            },{
+                name: 'Deluxe FM',
                 genre: 'R&B and Urban',
                 url: 'http://37.220.139.42:8390/;&type=mp3'
             },{
@@ -151,9 +151,9 @@ export default {
     methods: {
          play(e) {
             // this.finished = !e;
-            // if(this.active_index == 0) { 
-            //     audio_player.src = this.playlist[0].data 
-            // } 
+            // if(this.active_index == 0) {
+            //     audio_player.src = this.playlist[0].data
+            // }
             // VueScrollTo.scrollTo('#el_' + this.active_index, 700, this.scrll_opts);
             // cancelAnimationFrame(this.anime);
             radio_player.volume = this.radio_vol;
@@ -196,20 +196,20 @@ export default {
                 vm.details = title.split("'")[1];
                 vm.media.artist = vm.details.split("-")[0];
                 vm.media.title = vm.details.split("-").pop();
-                // if (this.control == 'radio') { 
-                //     EventBus.$emit('media', vm.media); 
+                // if (this.control == 'radio') {
+                //     EventBus.$emit('media', vm.media);
                 // }
-                EventBus.$emit('media', vm.media); 
+                EventBus.$emit('media', vm.media);
             });
             radio_player.play();
         }
     },
     mounted() {
-        EventBus.$on('play-pause-radio', this.play); 
+        EventBus.$on('play-pause-radio', this.play);
         EventBus.$on('volume-radio', this.setVolume);
         EventBus.$on('pause-radio', () => { radio_player.pause(); });
         EventBus.$on('next-radio', this.next);
-        EventBus.$on('prev-radio', this.prev); 
+        EventBus.$on('prev-radio', this.prev);
         EventBus.$on('media', (data) => {
             this.control = data.media;
         });
@@ -254,7 +254,7 @@ table {
         color: silver;
         cursor: pointer;
     }
-    .r-tbl-content tr:nth-child(odd) { 
+    .r-tbl-content tr:nth-child(odd) {
         background-color: #353535;
     }
     .r-tbl-header th {
@@ -276,7 +276,7 @@ table {
         color: #fff;
         border-bottom: solid 1px rgba(255,255,255,0.1);
     }
-    /* .v-tbl-content tr:hover { 
+    /* .v-tbl-content tr:hover {
         color: #ffffff;
         font-weight: 600;
     } */

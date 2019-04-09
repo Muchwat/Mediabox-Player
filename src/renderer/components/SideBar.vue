@@ -1,5 +1,5 @@
 <template>
-    <div class="side-bar" :class="{is_open: !isOpen}">
+    <div class="side-bar">
         <!-- <ul class="play_queue">
             <li>
                 <div>Play queue</div>
@@ -8,40 +8,40 @@
         <ul class="now_playing">
             <li>
                 <div :class="{_opt_: v_name == 'now-playing'}" @click="view({ name: 'now-playing', view: active, sub: true})">
-                    <poll class="icon" :size="64"/> <span v-show="isOpen">Now playing</span>
+                    <poll class="icon" :size="64"/> <span class="opt_label">Now playing</span>
                 </div>
             </li>
         </ul>
-        <ul class="browse"> 
+        <ul class="browse">
             <label>Browse</label>
             <li>
                 <div :class="{_opt_: v_name == 'music'}" @click="view({ name: 'music', view: 'audio', sub: false})">
-                    <music class="icon" :size="64"/> <span v-show="isOpen">Music</span>
+                    <music class="icon" :size="64"/> <span class="opt_label">Music</span>
                 </div>
             </li>
             <li>
                 <div :class="{_opt_: v_name == 'videos'}" @click="view({ name: 'videos', view: 'video', sub: false})">
-                    <filmstrip class="icon" :size="64"/> <span v-show="isOpen">Videos</span>
+                    <filmstrip class="icon" :size="64"/> <span class="opt_label">Videos</span>
                 </div>
             </li>
             <li>
                 <div :class="{_opt_: v_name == 'radio'}" @click="view({ name: 'radio', view: 'radio', sub: false})">
-                    <access-point class="icon" :size="64"/> <span v-show="isOpen">Radio</span>
+                    <access-point class="icon" :size="64"/> <span class="opt_label">Radio</span>
                 </div>
             </li>
         </ul>
 
-        <ul class="library"> 
+        <ul class="library">
             <label>Library</label>
-            <li><div><heart class="icon" :size="64"/> <span v-show="isOpen">Favorites</span></div></li>
-            <li><div><album class="icon" :size="64"/> <span v-show="isOpen">Albums</span></div></li>
-            <li><div><account-box class="icon" :size="64"/> <span v-show="isOpen">Artists</span></div></li>
+            <li><div><heart class="icon" :size="64"/> <span class="opt_label">Favorites</span></div></li>
+            <li><div><album class="icon" :size="64"/> <span class="opt_label">Albums</span></div></li>
+            <li><div><account-box class="icon" :size="64"/> <span class="opt_label">Artists</span></div></li>
         </ul>
 
         <ul class="settings">
             <li>
                 <div :class="{_opt_: v_name == 'settings'}" @click="view({ name: 'settings', view: 'settings', sub: false })">
-                    <settings class="icon" :size="64"/> <span v-show="isOpen">Settings</span>
+                    <settings class="icon" :size="64"/> <span class="opt_label">Settings</span>
                 </div>
             </li>
         </ul>
@@ -52,16 +52,16 @@
 import { EventBus } from '@/eventbus/event-bus.js'
 export default {
     name: 'side-bar',
-    data() { 
+    data() {
         return {
             active: 'audio',
             v_name: 'music',
-            isOpen: true
-        } 
+            isOpen: false
+        }
     },
     methods: {
-        view(v) { 
-            EventBus.$emit('view', v); 
+        view(v) {
+            EventBus.$emit('view', v);
             this.v_name = v.name
         },
         setNowPlaying(e) {
@@ -70,7 +70,7 @@ export default {
     },
     mounted() {
         EventBus.$on('media', this.setNowPlaying);
-        EventBus.$on('min-sidebar', (state) => this.isOpen = !state);
+        EventBus.$on('min-sidebar', (state) => this.isOpen = state);
     }
 }
 </script>
@@ -81,17 +81,12 @@ export default {
     width: 20vw;
     height: 90vh;
     position: absolute;
-    top: 0; 
+    top: 0;
     left: 0;
     -webkit-transition: width 0.8s;
 }
 ul {
     padding: 0;
-}
-ul > label {
-    color: #6B6B6B;
-    font-size: 17px;
-    padding-left: 2vw;
 }
 ul > :nth-child(2) {
     margin-top: 2vh;
@@ -144,12 +139,13 @@ ul > li div:hover {
     color: #ffffff;
 }
 
-.is_open ul > label {
+.side-bar ul > label {
     color: #6B6B6B;
     font-size: 11px;
     padding-left: 1.3vw;
+    -webkit-transition: font-size 0.8s;
 }
-.is_open ul > li .icon {
+.side-bar ul > li .icon {
     font-size: 19px;
     padding-left: 0vw;
 }

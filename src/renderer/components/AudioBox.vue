@@ -23,7 +23,7 @@
             <table style="width:100%">
                 <tr>
                      <td>
-                        <img class="media-img" :src="active.image" v-show="active.image != null"> 
+                        <img class="media-img" :src="active.image" v-show="active.image != null">
                         <img src="~@/assets/holder_dark.svg" class="media-img" v-show="active.image == null">
                     </td>
                     <td style="width: 53vw;">
@@ -140,14 +140,14 @@ export default {
                 let files = fs.readdirSync(currentPath);
 
                 for (let i in files) {
-                    let curFile = path.join(currentPath, files[i]);      
+                    let curFile = path.join(currentPath, files[i]);
                     if (fs.statSync(curFile).isFile() && fileTypes.indexOf(path.extname(curFile)) != -1) {
                         routes.push(curFile.replace(/\\/g, "/"));
                     } else if (fs.statSync(curFile).isDirectory()) { navigateDir(curFile); }
                 }
             };
             navigateDir(dir);
-            return routes.sort(); 
+            return routes.sort();
         },
         parseFiles(files) {
             try {
@@ -168,7 +168,7 @@ export default {
                     } catch (error) {
                         console.error('Error occured while parsing file!');
                     }
-                    
+
                     this.parseFiles(files);
                     return Promise.resolve();
                 }
@@ -176,9 +176,9 @@ export default {
         },
         play(e) {
             // this.finished = !e;
-            // if(this.active_index == 0) { 
-            //     audio_player.src = this.playlist[0].data 
-            // } 
+            // if(this.active_index == 0) {
+            //     audio_player.src = this.playlist[0].data
+            // }
             VueScrollTo.scrollTo('#el_' + this.active_index, 700, this.scrll_opts);
             cancelAnimationFrame(this.anime);
             audio_player.volume = this.audio_vol;
@@ -197,7 +197,7 @@ export default {
             this.active = audio;
             audio_player.src = audio.data;
             audio_player.volume = this.audio_vol;
-            audio_player.play(), 
+            audio_player.play(),
             this.finished = false
             this.visualizer(this.context, this.sourceNode);
             this.audioFilter(this.filter_vals);
@@ -367,13 +367,13 @@ export default {
         this.sourceNode = this.context.createMediaElementSource(audio_player);
         this.paths =  this.getFilesFromDir(this.defaultDir);
         this.parseFiles(this.paths);
-        EventBus.$on('play-pause-audio', this.play); 
+        EventBus.$on('play-pause-audio', this.play);
         EventBus.$on('volume-audio', this.setVolume);
         EventBus.$on('pause-audio', () => { audio_player.pause(); this.finished = true; });
         EventBus.$on('next-audio', this.next);
-        EventBus.$on('prev-audio', this.prev); 
-        EventBus.$on('filter-audio', this.setFilters); 
-        EventBus.$on('current-time-audio', (time) => { 
+        EventBus.$on('prev-audio', this.prev);
+        EventBus.$on('filter-audio', this.setFilters);
+        EventBus.$on('current-time-audio', (time) => {
             console.log('time', time)
             // audio_player.currentTime = time;
         });
@@ -466,7 +466,7 @@ export default {
         color: silver;
         cursor: pointer;
     }
-    .tbl-content tr:nth-child(odd) { 
+    .tbl-content tr:nth-child(odd) {
         background-color: #353535;
     }
     .tbl-header th {
@@ -488,7 +488,7 @@ export default {
         color: #fff;
         border-bottom: solid 1px rgba(255,255,255,0.1);
     }
-    /* .tbl-content tr:hover { 
+    /* .tbl-content tr:hover {
         color: #ffffff;
         font-weight: 600;
     } */
@@ -504,12 +504,12 @@ export default {
     /* for custom scrollbar for webkit browser*/
     ::-webkit-scrollbar {
         width: 6px;
-    } 
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6); 
-    } 
-    ::-webkit-scrollbar-thumb {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6); 
     }
-    
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+    }
+
 </style>

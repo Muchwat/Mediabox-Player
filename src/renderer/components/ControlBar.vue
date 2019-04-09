@@ -24,7 +24,7 @@
         <volume-high class="vol-high" :size="24" @click="setVolume(1)"/>
       </div>
       <VueSlideBar v-model="progress" @input="seekBar" :paddingless="true" :showTooltip="false" :lineHeight="2" class="progress" :processStyle="processStyle"/>
-      
+
   </div>
 </template>
 
@@ -49,7 +49,7 @@
       setVolume(action) {
         if (action) {
           this.vol = this.vol < 95 ? this.vol + 5 : this.vol = 100;
-        } else { 
+        } else {
           this.vol = this.vol > 5 ? this.vol - 5 : this.vol = 0;
         }
       },
@@ -57,7 +57,7 @@
         EventBus.$emit('volume-' + this.control, val / 100);
       },
       shuffle() {
-        EventBus.$emit('shuffle', this.state);      
+        EventBus.$emit('shuffle', this.state);
       },
       previous() {
         EventBus.$emit('prev-'+ this.control);
@@ -77,9 +77,9 @@
       },
       setProgressBar(data) {
         this.progress = (data.currentTime / data.duration) * 100;
-        if (this.progress == 100) { 
+        if (this.progress == 100) {
           this.state = false;
-          EventBus.$emit('on-finish', true); 
+          EventBus.$emit('on-finish', true);
           EventBus.$emit('next-'+ this.control);
         }
       },
@@ -92,8 +92,8 @@
       EventBus.$on('progress', this.setProgressBar);
       EventBus.$on('media', (data) => {
         this.control = data.media;
-        this.media = data; 
-        this.state = true; 
+        this.media = data;
+        this.state = true;
         if (data.media == 'radio') { this.progress = 100 }
       });
     }
@@ -114,7 +114,7 @@
     width: 6vh;
     float:left;
   }
-  
+
   .controls .shuffle {
     font-size: 14px;
     color: #ffffff;
@@ -178,7 +178,7 @@
     bottom: 0px;
     z-index: 2;
   }
-  
+
   .volume {
     /* width:  6vh;
     background: #ffffff;

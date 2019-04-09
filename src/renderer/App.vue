@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{ min_sidebar: minSidebar }">
+  <div id="app" :class="{ min_sidebar: minSidebar, max_sidebar: !minSidebar }">
     <nav-bar></nav-bar>
     <side-bar></side-bar>
     <audio-box v-show="active == 'audio'" :submodule="sub"></audio-box>
@@ -25,7 +25,7 @@
       return {
         active: 'audio',
         sub: false,
-        minSidebar: false,
+        minSidebar: true,
         media: {},
         progress: 0,
         vol: 20,
