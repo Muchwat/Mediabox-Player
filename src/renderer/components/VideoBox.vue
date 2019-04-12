@@ -29,7 +29,7 @@
                             </td>
                             <td>{{ video.title }}</td>
                             <td>{{ video.size }}</td>
-                            <td>{{  video.type }}</td>
+                            <td>{{ video.type }}</td>
                         </tr>
                     </tbody>
                 </table>
