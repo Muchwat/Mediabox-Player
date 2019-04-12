@@ -138,7 +138,6 @@ export default {
             let fileTypes = ['.flac','.m4a','.mp3','.ogv' ,'.ogm','.ogg','.oga','.opus','.webm','.wav','.amr','.avi','.3gp'];
             function navigateDir(currentPath) {
                 let files = fs.readdirSync(currentPath);
-
                 for (let i in files) {
                     let curFile = path.join(currentPath, files[i]);
                     if (fs.statSync(curFile).isFile() && fileTypes.indexOf(path.extname(curFile)) != -1) {

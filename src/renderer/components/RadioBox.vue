@@ -194,7 +194,7 @@ export default {
             // });
             this.stream.on("metadata", (title) => {
                 vm.details = title.split("'")[1];
-                vm.media.artist = vm.details.split("-")[0];
+                vm.media.artist = vm.details.split("-").shift();
                 vm.media.title = vm.details.split("-").pop();
                 // if (this.control == 'radio') {
                 //     EventBus.$emit('media', vm.media);

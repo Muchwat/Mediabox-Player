@@ -1,8 +1,10 @@
 <template>
     <div class="video-box">
         <section style="height: 90vh;" v-show="submodule">
-            <video id="video_player" @timeupdate="progress"></video>
-            <crop-free class="expand"/>
+            <video id="video_player" @timeupdate="progress" @dblclick="toggleFullScreen" crossorigin="anonymous" allowfullscreen>
+                <span class="expand" style="position:absolute; top: 40vh;z-index:10">{{isInFullScreen}}</span>
+            </video>
+            <crop-free class="expand"/> <span class="expand" style="position:absolute; top: 40vh;z-index:10">{{isInFullScreen}}</span>
         </section>
         <section v-show="!submodule">
             <div class="v-tbl-header">
@@ -57,6 +59,8 @@ export default {
             active: {},
             video_vol: 0.2,
             data_stream: null,
+            currentWindow: null,
+            isInFullScreen: false,
             finished: false,
             scrll_opts: {
                 container: '.v-tbl-content',
@@ -135,6 +139,16 @@ export default {
             // this.gainNode.connect(this.context.destination);
             // this.sourceNode.connect(this.gainNode);
         },
+        toggleFullScreen() {
+            this.isInFullScreen = this.currentWindow.isFullScreen();
+            if (this.isInFullScreen) {
+                document.webkitCancelFullScreen();
+                this.currentWindow.setFullScreen(false);
+            } else {
+                this.currentWindow.setFullScreen(true);
+                // video_player.webkitEnterFullScreen();
+            }
+        }
     },
     mounted() {
         this.playlist = this.getFilesFromDir(this.defaultDir);
@@ -143,6 +157,8 @@ export default {
         EventBus.$on('pause-video', () => { video_player.pause(); });
         EventBus.$on('next-video', this.next);
         EventBus.$on('prev-video', this.prev); 
+        this.currentWindow = this.$electron.remote.getCurrentWindow();
+        
     }
 }
 </script>
