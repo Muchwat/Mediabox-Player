@@ -12,6 +12,7 @@
                 </div>
             </li>
         </ul>
+        
         <ul class="browse">
             <label>Browse</label>
             <li>

@@ -5,6 +5,7 @@
   "description": "Media Player",
   "license": "MIT",
   "main": "./dist/electron/main.js",
+  "repository": "https://github.com/Muchwat/Mediabox-Player",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
@@ -47,7 +48,9 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "publish":["github"],
+		  "remoteReleases": "https://github.com/Muchwat/Mediabox-Player"
     },
     "linux": {
       "icon": "build/icons"
