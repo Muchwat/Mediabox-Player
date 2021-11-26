@@ -57,7 +57,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "element-ui": "^2.6.3",
     "mp3-duration": "^1.1.0",
     "music-metadata": "^3.5.3",
